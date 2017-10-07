@@ -6,6 +6,7 @@ import numpy as np
 from utils import mnist_reader
 from utils.validation import validation_report
 
+import argparse
 
 from keras.utils import to_categorical
 from keras.models import Sequential

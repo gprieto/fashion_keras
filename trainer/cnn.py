@@ -82,7 +82,7 @@ def train_model(train_file='data/fashion/fashion-mnist_train',
 
 	history = model.fit(X_train.reshape(-1, 28, 28, 1), y_train_ohe, epochs=5, batch_size=32,verbose=2)
 
-	score = model.evaluate(X_train, y_train_ohe, verbose=0)
+	score = model.evaluate(X_train.reshape(-1, 28, 28, 1), y_train_ohe, verbose=0)
 	print('Train loss:', score[0])
 	print('Train accuracy:', score[1])
 

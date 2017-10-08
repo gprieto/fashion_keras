@@ -80,7 +80,11 @@ def train_model(train_file='data/fashion/fashion-mnist_train',
 	              optimizer=keras.optimizers.SGD(lr=0.001, decay=0., nesterov=False), 
 	             metrics=[metrics.categorical_accuracy, top3_acc])
 
-	history = model.fit(X_train.reshape(-1, 28, 28, 1), y_train_ohe, epochs=5, batch_size=32,verbose=1)
+	history = model.fit(X_train.reshape(-1, 28, 28, 1), y_train_ohe, epochs=5, batch_size=32,verbose=2)
+
+	score = model.evaluate(X_train, y_train_ohe, verbose=0)
+    print('Train loss:', score[0])
+    print('Train accuracy:', score[1])
 
 		# Save the model locally
 	model.save('model_cnn.h5')

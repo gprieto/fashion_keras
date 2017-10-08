@@ -35,7 +35,7 @@ def train_model(train_file='data/fashion/fashion-mnist_train',
 
 	f = file_io.FileIO(train_file, mode='r')
 
-	data_train = pd.read_csv(f)			
+	data_train = pd.read_csv(f,engine='python')			
 
 	img_rows, img_cols = 28, 28
 	input_shape = (img_rows, img_cols, 1)

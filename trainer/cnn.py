@@ -3,8 +3,7 @@ import h5py
 
 from datetime import datetime # for filename conventions
 import numpy as np
-from utils import mnist_reader
-from utils.validation import validation_report
+import pandas as pd
 
 import argparse
 
@@ -17,7 +16,7 @@ from tensorflow.python.lib.io import file_io # for better file I/O
 import sys
 
 # Create a function to allow for different training data and other options
-def train_model(train_dir='data/fashion/',
+def train_model(train_file='data/fashion/fashion-mnist_train',
 				job_dir='./tmp/fashion', **args):
 	# set the logging path for ML Engine logging to Storage bucket
 	logs_path = job_dir + '/logs/' + datetime.now().isoformat()
@@ -34,8 +33,20 @@ def train_model(train_dir='data/fashion/',
 	"Bag",
 	"Ankle boot"]
 
-	X_train, y_train = mnist_reader.load_mnist(job_dir, kind='train')
-	#X_test, y_test = mnist_reader.load_mnist('../data/fashion', kind='t10k')
+	f = file_io.FileIO(train_file, mode='r')
+	
+	data = pd.read_csv(f)			
+
+	img_rows, img_cols = 28, 28
+	input_shape = (img_rows, img_cols, 1)
+
+	X_train = np.array(data_train.iloc[:, 1:])
+	y_train = to_categorical(np.array(data_train.iloc[:, 0]))
+
+	X_train = X_train.reshape(len(y), img_rows * img_cols)
+	X_train = X.astype('float32')
+	X_train /= 255
+
 
 	N = X_train.shape[0]
 	batch_size = 32

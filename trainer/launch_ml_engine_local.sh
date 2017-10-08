@@ -3,4 +3,4 @@ gcloud ml-engine local train \
   --module-name trainer.cnn \
   --package-path ./trainer \
   -- \
-  --train-dir ./data/fashion
+  --train-file ./data/fashion/fashion-mnist_train

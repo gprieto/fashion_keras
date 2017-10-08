@@ -11,7 +11,7 @@ setup(name='cnn',
       license='MIT',
       install_requires=[
           'keras',
-          'pandas'
+          'pandas',
           'numpy',
           'h5py'],
       zip_safe=False)

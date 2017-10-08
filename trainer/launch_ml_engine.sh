@@ -10,4 +10,4 @@ gcloud ml-engine jobs submit training $JOB_NAME \
   --package-path ./trainer \
   --region $REGION \
   -- \
-  --train-file ./data/fashion-mnist_train.csv
+  --train-file $BUCKET_NAME/data/fashion-mnist_train.csv

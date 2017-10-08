@@ -1,7 +1,7 @@
 '''Cloud ML Engine package configuration.'''
 from setuptools import setup, find_packages
 
-setup(name='fashion_keras',
+setup(name='cnn',
       version='1.0',
       packages=find_packages(),
       include_package_data=True,
@@ -11,6 +11,7 @@ setup(name='fashion_keras',
       license='MIT',
       install_requires=[
           'keras',
+          'pandas'
           'numpy',
           'h5py'],
       zip_safe=False)

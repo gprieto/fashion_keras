@@ -34,17 +34,17 @@ def train_model(train_file='data/fashion/fashion-mnist_train',
 	"Ankle boot"]
 
 	f = file_io.FileIO(train_file, mode='r')
-	
-	data = pd.read_csv(f)			
+
+	data_train = pd.read_csv(f)			
 
 	img_rows, img_cols = 28, 28
 	input_shape = (img_rows, img_cols, 1)
 
 	X_train = np.array(data_train.iloc[:, 1:])
-	y_train = to_categorical(np.array(data_train.iloc[:, 0]))
+	y_train_ohe = to_categorical(np.array(data_train.iloc[:, 0]))
 
-	X_train = X_train.reshape(len(y), img_rows * img_cols)
-	X_train = X.astype('float32')
+	X_train = X_train.reshape(len(y_train_ohe), img_rows * img_cols)
+	X_train = X_train.astype('float32')
 	X_train /= 255
 
 
@@ -53,13 +53,11 @@ def train_model(train_file='data/fashion/fashion-mnist_train',
 
 	n_batch = int(N/batch_size)
 
-	y_train_ohe = to_categorical(y_train)
-
 	dropout_rate=0.1
 
 	model = Sequential()
 
-	model.add(Conv2D(16, (5, 5), activation='relu', input_shape=(28, 28, 1)))
+	model.add(Conv2D(16, (5, 5), activation='relu', input_shape=input_shape))
 	model.add(MaxPooling2D(pool_size=(2, 2)))
 
 	model.add(Conv2D(16, (5, 5), activation='relu'))
